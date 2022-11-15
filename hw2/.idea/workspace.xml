@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7dac2d3d-853a-4724-b339-c11f73071651" name="Changes" comment="">
+    <list default="true" id="7dac2d3d-853a-4724-b339-c11f73071651" name="Changes" comment="add new main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hw2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hw2/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +40,17 @@
       <updated>1668500062389</updated>
       <workItem from="1668500063530" duration="116000" />
       <workItem from="1668500454880" duration="203000" />
-      <workItem from="1668500670633" duration="42000" />
+      <workItem from="1668500670633" duration="171000" />
+      <workItem from="1668500906793" duration="293000" />
     </task>
+    <task id="LOCAL-00001" summary="add new main">
+      <created>1668500823450</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668500823450</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -59,5 +66,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add new main" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new main" />
   </component>
 </project>
