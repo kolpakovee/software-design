@@ -1,30 +1,21 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Group {
-    static Student[] students;
+    ArrayList<Student> students = new ArrayList<Student>();
 
-    public static boolean getGroupFromConsole() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Input number of students: ");
-        int studentsCount = scanner.nextInt();
-        if (studentsCount <= 0 || studentsCount > 30) {
-            System.out.print("You entered the wrong number of students!");
-            return false;
-        }
-        students = new Student[studentsCount];
-        for (int i = 0; i < studentsCount; i++) {
-            students[i] = Student.getStudentFromConsole();
-        }
-        return true;
+    public Group(){
+        students = new ArrayList<>();
     }
 
-    public static Student getRandomStudent() {
-        return students[(int) (Math.random() * students.length)];
+    public Student getRandomStudent() {
+        return students.get((int) (Math.random() * students.size()));
     }
 
-    public static void printStudentsToConsole() {
+    public String  toString() {
+        StringBuilder result = new StringBuilder("Group:\n");
         for (Student student : students) {
-            System.out.println(student);
+            result.append(student);
         }
+        return result.toString();
     }
 }
