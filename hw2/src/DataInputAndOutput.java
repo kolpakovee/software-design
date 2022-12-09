@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class DataInputAndOutput {
     static Student getStudentFromConsole() {
         Scanner in = new Scanner(System.in);
