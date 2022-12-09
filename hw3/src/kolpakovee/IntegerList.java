@@ -1,3 +1,5 @@
+package kolpakovee;
+
 import java.util.Collection;
 
 public interface IntegerList {
