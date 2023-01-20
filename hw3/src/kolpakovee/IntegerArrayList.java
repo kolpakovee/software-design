@@ -2,7 +2,8 @@ package kolpakovee;
 
 public class IntegerArrayList implements IntegerList {
     private int size = 0;
-    private Integer[] array = new Integer[1];
+    //private int capacity = 8;
+    private Integer[] array = new Integer[8];
 
     @Override
     public int size() {
