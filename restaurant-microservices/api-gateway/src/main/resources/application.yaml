@@ -37,3 +37,10 @@ spring:
             - Path=/user-info
           filters:
             - RewritePath=/user-info, /token/user-info
+        - id: test
+          uri: http://localhost:8081
+          predicates:
+            - Path=/test
+          filters:
+            - AddRoleFilter
+            - RewritePath=/test, /restaurant/order/test

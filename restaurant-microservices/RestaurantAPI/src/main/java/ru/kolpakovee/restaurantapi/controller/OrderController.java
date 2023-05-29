@@ -17,5 +17,8 @@ public class OrderController {
         orderService.createOrder(orderDto);
     }
 
-
+    @GetMapping("/test")
+    public String test(@RequestHeader("Role") String role){
+        return role;
+    }
 }

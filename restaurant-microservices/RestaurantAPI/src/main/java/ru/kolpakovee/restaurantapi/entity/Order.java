@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "order_table")
+@Table(name = "_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

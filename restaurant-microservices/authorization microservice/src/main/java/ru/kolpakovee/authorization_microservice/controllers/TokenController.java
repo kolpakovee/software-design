@@ -1,6 +1,7 @@
 package ru.kolpakovee.authorization_microservice.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kolpakovee.authorization_microservice.exceptions.InvalidTokenException;
@@ -16,13 +17,13 @@ public class TokenController {
     private final UserService userService;
 
     @GetMapping("/validate")
-    public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization") String authToken) {
+    public ResponseEntity<Boolean> validateToken(@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken) {
         boolean isValid = jwtService.isValidToken(authToken);
         return ResponseEntity.ok(isValid);
     }
 
     @GetMapping("/user-info")
-    public ResponseEntity<UserInfoResponse> userInfo(@RequestHeader("Authorization") String authToken) {
+    public ResponseEntity<UserInfoResponse> userInfo(@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken) {
         if (!jwtService.isValidToken(authToken)) {
             throw new InvalidTokenException("Invalid token.");
         }
