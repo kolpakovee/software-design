@@ -3,9 +3,6 @@ package ru.kolpakovee.authorization_microservice.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 @Entity
 @Data
 @Builder

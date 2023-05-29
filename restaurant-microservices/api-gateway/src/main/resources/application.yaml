@@ -12,7 +12,7 @@ spring:
           predicates:
             - Path=/restaurant/**
           filters:
-            - AuthValidationFilterFactory
+            - AddRoleFilter
         - id: register
           uri: http://localhost:8080
           predicates:
@@ -30,17 +30,19 @@ spring:
           predicates:
             - Path=/validate
           filters:
+            - AuthValidationFilter
             - RewritePath=/validate, /token/validate
         - id: user-info
           uri: http://localhost:8080
           predicates:
             - Path=/user-info
           filters:
+            - AuthValidationFilter
             - RewritePath=/user-info, /token/user-info
-        - id: test
+        - id: menu
           uri: http://localhost:8081
           predicates:
-            - Path=/test
+            - Path=/menu
           filters:
-            - AddRoleFilter
-            - RewritePath=/test, /restaurant/order/test
+            - AuthValidationFilter
+            - RewritePath=/menu, /restaurant/dish/menu

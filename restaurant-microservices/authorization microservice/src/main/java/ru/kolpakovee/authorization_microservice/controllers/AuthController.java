@@ -3,13 +3,16 @@ package ru.kolpakovee.authorization_microservice.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import ru.kolpakovee.authorization_microservice.exceptions.InvalidTokenException;
-import ru.kolpakovee.authorization_microservice.pojo.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.kolpakovee.authorization_microservice.pojo.AuthResponse;
+import ru.kolpakovee.authorization_microservice.pojo.LoginRequest;
+import ru.kolpakovee.authorization_microservice.pojo.RegisterRequest;
+import ru.kolpakovee.authorization_microservice.pojo.Response;
 import ru.kolpakovee.authorization_microservice.services.AuthService;
-import ru.kolpakovee.authorization_microservice.services.JwtService;
 import ru.kolpakovee.authorization_microservice.services.SessionService;
-import ru.kolpakovee.authorization_microservice.services.UserService;
 
 @RestController
 @RequestMapping("/auth")

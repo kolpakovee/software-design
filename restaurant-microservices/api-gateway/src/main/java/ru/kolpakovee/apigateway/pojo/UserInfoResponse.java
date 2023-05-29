@@ -1,4 +1,4 @@
-package ru.kolpakovee.apigateway;
+package ru.kolpakovee.apigateway.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

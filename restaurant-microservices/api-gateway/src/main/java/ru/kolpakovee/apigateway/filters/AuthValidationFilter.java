@@ -1,4 +1,4 @@
-package ru.kolpakovee.apigateway;
+package ru.kolpakovee.apigateway.filters;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -7,14 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import static ru.kolpakovee.apigateway.AuthValidationFilterFactory.extractAuthToken;
-
 @Component
-public class AddRoleFilter extends AbstractGatewayFilterFactory<AddRoleFilter.Config> {
+public class AuthValidationFilter extends AbstractGatewayFilterFactory<AuthValidationFilter.Config> {
 
     private final WebClient webClient;
 
-    public AddRoleFilter(WebClient.Builder webClientBuilder) {
+    public AuthValidationFilter(WebClient.Builder webClientBuilder) {
         super(Config.class);
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
@@ -29,21 +27,24 @@ public class AddRoleFilter extends AbstractGatewayFilterFactory<AddRoleFilter.Co
             }
 
             return webClient.get()
-                    .uri("http://localhost:8080/token/user-info")
+                    .uri("http://localhost:8080/token/validate")
                     .header(HttpHeaders.AUTHORIZATION, authToken)
                     .retrieve()
-                    .bodyToMono(UserInfoResponse.class)
-                    .flatMap(userInfoResponse -> {
-                        String r = userInfoResponse.role;
-                        return chain.filter(exchange.mutate()
-                                .request(builder -> builder.header("Role", r))
-                                .build());
+                    .bodyToMono(Boolean.class)
+                    .flatMap(valid -> {
+                        if (valid) {
+                            return chain.filter(exchange);
+                        } else {
+                            return Mono.error(new RuntimeException("Invalid token."));
+                        }
                     });
-
         };
+    }
+
+    public static String extractAuthToken(HttpHeaders headers) {
+        return headers.getFirst(HttpHeaders.AUTHORIZATION);
     }
 
     public static class Config {
     }
 }
-
