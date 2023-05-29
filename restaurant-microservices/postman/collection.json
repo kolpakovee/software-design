@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "c7f84005-9c8b-496a-9246-c9d5ffc07ba6",
+		"name": "restaurant-service | auth-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27635686"
+	},
+	"item": [
+		{
+			"name": "[ALL] Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"kolpakovee\",\n    \"email\":\"kolpakovee@bk.ru\",\n    \"password\":\"12345\",\n    \"role\":\"MANAGER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[ALL] Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.environment.set('token', jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"kolpakovee@bk.ru\",\n    \"password\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Validate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/validate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] User-info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user-info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user-info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/menu",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MANAGER] Get dish by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restaurant/dish/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"dish",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MANAGER] Create dish",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Chicken steak\",\n   \"description\":\"Very soft and tender meat\",\n   \"price\":400,\n   \"quantity\":10,\n   \"available\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/restaurant/dish/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"dish",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MANAGER] Update dish",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Chicken steak\",\n   \"description\":\"Very soft and tender meat\",\n   \"price\":350,\n   \"quantity\":15,\n   \"available\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/restaurant/dish/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"dish",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MANAGER] Delete dish",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restaurant/dish/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"dish",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Create order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"specialRequests\":\"Very fast, please\",\n   \"orderDishList\":[\n      {\n         \"dishId\":6,\n         \"quantity\":2,\n         \"price\":500\n      },\n      {\n         \"dishId\":7,\n         \"quantity\":3,\n         \"price\":400\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/restaurant/order/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"order",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Get order by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restaurant/order/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restaurant",
+						"order",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
